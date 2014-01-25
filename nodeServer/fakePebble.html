@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <script type='text/javascript' src='/Users/kaushalparikh/projects/webPeb/nodeServer/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js'></script>
+    </head>
+
+    <body>
+        <script>
+            var socket = io.connect('http://localhost:3000')
+            socket.emit('pebCon', {'number': 1234});
+        </script>
+
+    </body>
+
+</html>
