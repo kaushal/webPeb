@@ -1,5 +1,5 @@
 //Generate a random ID if one does not exist in local storage already.
-var socketId = parseInt(localStorage.getItem('socketId')) || Math.floor(Math.random() * 11);
+var socketId = parseInt(localStorage.getItem('socketId')) || Math.floor(Math.random() * 9999);
 simply.title('Your ID number is ' + socketId);
 localStorage.setItem('socketId', socketId);
 
@@ -9,7 +9,7 @@ simply.on('accelTap', function(e) {
   var options = {
     url: 'http://www.webpeb.com/accelerometer',
     method: 'post',
-    data: {'direction': e.direction, 'axis': e.axis}
+    data: {'direction': e.direction, 'axis': e.axis, 'pebID': socketId}
   };
 
   ajax(options, function(data){
@@ -23,7 +23,7 @@ simply.on('singleClick', function(e) {
   var options = {
     url: 'http://www.webpeb.com/button',
     method: 'post',
-    data: {'button': e.button}
+    data: {'button': e.button, 'pebID': socketId}
   };
 
   ajax(options, function(data){
