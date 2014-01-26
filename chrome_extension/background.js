@@ -54,7 +54,9 @@ setInterval(function(){
       });
       });
     }else if(data.action == "reopenTab"){
-
+      chrome.tabs.create({ url: lastTabs[lastTabs.length - 1] });
+      lastTabs.slice(0, -1);
+      maxTab += 1;
     }else if(data.action == "scrollDown"){
       chrome.tabs.query({active: true}, function(tabs){
         console.log(tabs[0]);
