@@ -41,10 +41,11 @@ $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
 			console.log(window);
 		});
 	}else if(data.action == "closeTab"){
-		chrome.tabs.remove(0, function(){
-			maxTab--;
-			console.log("tab removed");	
-		});
+		chrome.tabs.query({active: true}, function(tabs){
+			chrome.tabs.remove(tabs[0].id, function(){
+				console.log('tab removed');
+			});
+		});		
         }else if(data.action == "reopenTab"){
 
 	}else if(data.action == "scrollDown"){
