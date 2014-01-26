@@ -36,5 +36,11 @@ var session = function(socketId){
 }
 
 ajax({'url': 'http://107.170.250.170/initiateSession'}, function(data){
-  session(data.id);
+  str = "";
+  for(var field in data){
+    if(data.hasOwnProperty(field)){
+      str += ", " + field;
+    }
+  }
+  simply.subtitle(str);
 });
