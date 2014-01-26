@@ -14,14 +14,12 @@ var session = function(socketId){
         action = 'tabRight';
       }
     }else{
-      if(e.direction > 0){
+      if(e.direction <= 0){
         action = 'closeTab';
       }else{
         action = 'reopenTab';
       }
     }
-
-    simply.subtitle('You tapped across ' + (e.direction > 0 ? '+' : '-') + e.axis + '!');
 
     var options = {
       url: 'http://107.170.250.170/updateSession',
@@ -37,8 +35,6 @@ var session = function(socketId){
 
   //Listen for button clicks.
   simply.on('singleClick', function(e) {
-    simply.subtitle('You pressed the ' + e.button + ' button!');
-
     var action;
     if(e.button === 'down'){
       action = 'scrollDown';
