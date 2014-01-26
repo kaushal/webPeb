@@ -17,8 +17,8 @@ chrome.tabs.query({active: true}, function(tabs){
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 	currentId = message.id;
 	console.log("received content message");
-	console.log(message);	
-}); 
+	console.log(message);
+});
 
 setInterval(function(){
 $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
@@ -30,24 +30,26 @@ $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
 			currentTab = 0;
 
 		chrome.tabs.highlight({tabs: currentTab}, function(window){
-			console.log(window);	
-		});		
+			console.log(window);
+		});
 	}else if(data.action == "tabLeft"){
 		currentTab--;
 		if(currentTab < minTab)
 			currentTab = maxTab;
 
 		chrome.tabs.highlight({tabs: currentTab}, function(window){
-			console.log(window);	
-		});		
+			console.log(window);
+		});
 	}else if(data.action == "closeTab"){
-
+        chrome.tabs.getCurrent(function(tab) {
+                chrome.tabs.remove(tab.id, function() { });
+        });
 	}else if(data.action == "reopenTab"){
 
 	}else if(data.action == "scrollDown"){
-		window.scrollBy(0,50);	
+		window.scrollBy(0,50);
 	}else if(data.action == "scrollUp"){
-		window.scrollBy(0,50);	
+		window.scrollBy(0,50);
 	}else{
 	//	console.log("doing nothing");
 	}
@@ -70,7 +72,7 @@ chrome.tabs.query({active: true}, function(tabs){
 //add code to select current window
 /*
 chrome.tabs.highlight({tabs: 2}, function(window){
-	console.log(window);	
+	console.log(window);
 });
 */
 
