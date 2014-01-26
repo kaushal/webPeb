@@ -41,15 +41,26 @@ $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
 			console.log(window);
 		});
 	}else if(data.action == "closeTab"){
-        chrome.tabs.getCurrent(function(tab) {
-                chrome.tabs.remove(tab.id, function() { });
-        });
-	}else if(data.action == "reopenTab"){
+		chrome.tabs.remove(0, function(){
+			maxTab--;
+			console.log("tab removed");	
+		});
+        }else if(data.action == "reopenTab"){
 
 	}else if(data.action == "scrollDown"){
-		window.scrollBy(0,50);
+		chrome.tabs.query({active: true}, function(tabs){
+			console.log(tabs[0]);
+			chrome.tabs.executeScript(tabs[0].id, {code: 'window.scrollBy(0, 50);'}, function(results){
+				console.log(results);
+			});
+		});
 	}else if(data.action == "scrollUp"){
-		window.scrollBy(0,50);
+		chrome.tabs.query({active: true}, function(tabs){
+			console.log(tabs[0]);
+			chrome.tabs.executeScript(tabs[0].id, {code: 'window.scrollBy(0, -50);'}, function(results){
+				console.log(results);
+			});
+		});
 	}else{
 	//	console.log("doing nothing");
 	}
