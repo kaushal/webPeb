@@ -3,13 +3,18 @@ console.log("hi");
 var currentTab = 0;
 var minTab = 0;
 var maxTab = 3;
+var currentId = 200;
 
 chrome.tabs.query({active: true}, function(tabs){
 	currentTab = tabs[0].index;
 	console.log(currentTab);
 });
 
-var currentId = 200;
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+	currentId = message.id;
+	console.log("received content message");
+	console.log(message);	
+}); 
 
 setInterval(function(){
 $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
