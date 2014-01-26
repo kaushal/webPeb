@@ -41,7 +41,10 @@ setInterval(function(){
                 console.log(window);
             });
         }else if(data.action == "closeTab"){
+            console.log('attempting to close tab');
             chrome.tabs.remove(currentTab, function() { });
+            currentTab--;
+            maxTab--;
         }else if(data.action == "reopenTab"){
 
         }else if(data.action == "scrollDown"){
