@@ -3,6 +3,7 @@ console.log("hi");
 var currentTab = 0;
 var minTab = 0;
 var maxTab = 0;
+var lastTabs = [];
 chrome.tabs.query({},function(tabs){
     maxTab = tabs.length;
     console.log(maxTab);
@@ -42,12 +43,18 @@ $.get('http://107.170.250.170/getAction', {id: currentId}, function(data){
 		});
 	}else if(data.action == "closeTab"){
 		chrome.tabs.query({active: true}, function(tabs){
+			lastTabs.push(tabs[0].url);
+			maxTab--;
+	
+			if(currentTab === maxTab)
+				currentTab--;
+
 			chrome.tabs.remove(tabs[0].id, function(){
-				console.log('tab removed');
+				console.log('' + lastTabs[lastTabs.length-1] + " removed");
 			});
 		});		
         }else if(data.action == "reopenTab"){
-
+		
 	}else if(data.action == "scrollDown"){
 		chrome.tabs.query({active: true}, function(tabs){
 			console.log(tabs[0]);
