@@ -39,7 +39,7 @@ ajax({'url': 'http://107.170.250.170/initiateSession'}, function(data){
   str = "";
   for(var field in data){
     if(data.hasOwnProperty(field)){
-      str += ", " + field;
+      str += ", " + data[field];
     }
   }
   simply.subtitle(str);
