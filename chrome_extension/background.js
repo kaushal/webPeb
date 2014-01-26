@@ -2,7 +2,11 @@ console.log("hi");
 
 var currentTab = 0;
 var minTab = 0;
-var maxTab = 3;
+var maxTab = 0;
+chrome.tabs.query({},function(tabs){
+	maxTab = tabs.length;
+	console.log(maxTab);	
+});
 var currentId = 200;
 
 chrome.tabs.query({active: true}, function(tabs){
