@@ -10,16 +10,17 @@ function sendGet(){
 
 $(function() {
     $('#subid').click(function() {
-	var id = $('#idid').val();
+        var id = $('#idid').val();
         console.log(id);
-	
-	chrome.runtime.sendMessage({'id': id}, function(response) {
-		  console.log(response.farewell);
-	});
-/*
-        console.log($('#idid').val());
-        var url  = "https://www.google.com/search?q=" + $('#idid').val();
-        sendGet();
+
+        chrome.runtime.sendMessage({'id': id}, function(response) {
+            console.log(response.farewell);
+        });
+        window.close();
+        /*
+           console.log($('#idid').val());
+           var url  = "https://www.google.com/search?q=" + $('#idid').val();
+           sendGet();
         //chrome.tabs.create({url: url}); */
     });
 });
