@@ -1,4 +1,5 @@
 simply.title('WebPeb');
+simply.text('');
 
 var session = function(socketId){
   simply.title('Your ID number is ' + socketId);
