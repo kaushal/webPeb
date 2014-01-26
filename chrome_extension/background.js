@@ -55,5 +55,5 @@ setInterval(function(){
             //	console.log("doing nothing");
         }
     });
-}, 1000);
+}, 250);
 
