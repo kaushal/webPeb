@@ -47,7 +47,7 @@ setInterval(function(){
         maxTab--;
 
         if(currentTab === maxTab)
-        currentTab--;
+        	currentTab--;
 
       chrome.tabs.remove(tabs[0].id, function(){
         console.log('' + lastTabs[lastTabs.length-1] + " removed");
